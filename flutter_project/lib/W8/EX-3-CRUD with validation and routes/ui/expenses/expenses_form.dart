@@ -12,7 +12,7 @@ class ExpenseForm extends StatefulWidget {
 class _ExpenseFormState extends State<ExpenseForm> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
-  String? _errorMessage;
+  String _errorMessage = '';
 
   void onCheckPressed() {
     final title = _titleController.text.trim();
@@ -71,11 +71,11 @@ class _ExpenseFormState extends State<ExpenseForm> {
               ),
             ),
 
-            if (_errorMessage != null)
+            if (_errorMessage.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(top: 8),
                 child: Text(
-                  _errorMessage!,
+                  _errorMessage,
                   style: const TextStyle(color: Colors.red),
                 ),
               ),

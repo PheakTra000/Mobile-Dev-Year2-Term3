@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'data/expenses_data.dart';
 import 'ui/expenses/expenses_screen.dart';
- 
 
 void main() {
   runApp(
-    const MaterialApp(
+    MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ExpensesScreen(),
+      home: ExpensesScreen(expenses: allExpenses),
     ),
   );
 }
