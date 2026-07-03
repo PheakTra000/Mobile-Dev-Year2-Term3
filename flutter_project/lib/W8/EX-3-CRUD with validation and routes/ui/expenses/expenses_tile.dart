@@ -9,7 +9,6 @@ class ExpenseTile extends StatelessWidget {
 
   final Expense expense;
 
-  // We format the date DD/MM/YYYY
   String get dateFormat => formatter.format(expense.date);
 
   @override
@@ -22,7 +21,7 @@ class ExpenseTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: ListTile(
-          title: Text(expense.title, overflow: TextOverflow.ellipsis),
+          title: Text(expense.title),
           subtitle: Text(dateFormat),
           leading: Icon(expense.category.icon),
           trailing: Text("${expense.amount.toString()} \$"),
