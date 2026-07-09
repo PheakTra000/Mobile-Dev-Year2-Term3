@@ -14,11 +14,11 @@ class ButtonStatus {
   }
 
   static ButtonStatus fromJson(Map<String, dynamic> json) {
-    assert(json["title"] is String);
-    assert(json["completed"] is bool);
+    assert(json["name"] is String);
+    assert(json["selected"] is bool);
 
-    String title = json["title"];
-    bool completed = json["completed"];
+    String title = json["name"];
+    bool completed = json["selected"];
 
     return ButtonStatus(title: title, completed: completed);
   }
