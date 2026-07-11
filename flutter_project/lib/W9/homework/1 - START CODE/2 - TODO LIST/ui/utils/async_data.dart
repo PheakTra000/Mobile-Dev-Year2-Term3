@@ -18,3 +18,4 @@ class AsyncData<T> {
       error = null,
       value = null;
 }
+  

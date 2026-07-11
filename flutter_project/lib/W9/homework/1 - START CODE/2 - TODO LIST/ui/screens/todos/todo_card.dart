@@ -14,8 +14,11 @@ class TodoCard extends StatelessWidget {
   //  Update the widget to disaply both state (completed / not completed) as required
   //
   //   TextDecoration? get textDecoration => TextDecoration.lineThrough;
-  TextDecoration? get textDecoration => todo.completed ? TextDecoration.lineThrough : null;
-
+  TextDecoration? get textDecoration {
+    if (todo.completed) return TextDecoration.lineThrough;
+    return null;
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -63,9 +66,20 @@ class CheckBox extends StatelessWidget {
   // Color? get backbroundColor => AppTheme.greenColor;
   // Widget? get innerIcon => Icon(Icons.check, color: Colors.white);
 
-  BoxBorder? get border => checked ? null : Border.all(color: AppTheme.yellowColor, width: 2);
-  Color? get backgroundColor => checked ? AppTheme.greenColor : Colors.white;
-  Widget? get innerIcon => checked ? Icon(Icons.check, color: Colors.white) : null;
+  BoxBorder? get border {
+    if (checked) return null;
+    return Border.all(color: AppTheme.yellowColor, width: 2);
+  }
+
+  Color? get backgroundColor {
+    if (checked) return AppTheme.greenColor;
+    return Colors.white;
+  }
+
+  Widget? get innerIcon {
+    if (checked) return Icon(Icons.check, color: Colors.white);
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {

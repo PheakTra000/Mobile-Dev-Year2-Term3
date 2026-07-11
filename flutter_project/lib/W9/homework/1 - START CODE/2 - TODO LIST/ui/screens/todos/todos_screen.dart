@@ -41,6 +41,16 @@ class _TodosScreenState extends State<TodosScreen> {
       asyncData = AsyncData.loading();
     });
 
+    // try {
+    //   List<Todo> todos = await repository.getTodos();
+    //   setState(() {
+    //     asyncData = AsyncData.success(todos);
+    //   });
+    // } on RepositoryException catch (e) {
+    //   setState(() {
+    //     asyncData = AsyncData.error(e.message);
+    //   });
+    // }
     try {
       List<Todo> todos = await repository.getTodos();
       setState(() {
@@ -56,13 +66,6 @@ class _TodosScreenState extends State<TodosScreen> {
   void onUpdateCompleted(Todo todo) async {
     TodoRepository repository = TodoRepository.global;
 
-    //  TODO
-    // Update the todo from the repo
-    // Handle the success, loading and error cases (catch exception)
-    // Update the widget state (asyncData)
-
-    // ! we dont reload the full list, we update directly the modified Todo in the cache (asyncData)
-
     try {
       bool newCompleted = !todo.completed;
       await repository.updateCompleted(todo.id, newCompleted);
@@ -74,14 +77,23 @@ class _TodosScreenState extends State<TodosScreen> {
           break;
         }
       }
+
       setState(() {
         asyncData = AsyncData.success(current);
       });
+      
     } on RepositoryException catch (e) {
       setState(() {
         asyncData = AsyncData.error(e.message);
       });
     }
+
+    //  TODO
+    // Update the todo from the repo
+    // Handle the success, loading and error cases (catch exception)
+    // Update the widget state (asyncData)
+
+    // ! we dont reload the full list, we update directly the modified Todo in the cache (asyncData)
   }
 
   Widget get content => switch (asyncData.status) {
