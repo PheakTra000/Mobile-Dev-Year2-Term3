@@ -1,4 +1,5 @@
 
+
 import 'package:flutter_project/W10/loginPage/model/score.dart';
 
 class ScoresDto {
@@ -9,5 +10,6 @@ class ScoresDto {
       scores.add(Score(title: json['title'] as String, value: json['value'] as int ));
     }
     return scores;
+
   }
 }

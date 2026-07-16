@@ -35,7 +35,7 @@ app.post("/login", (req, res) => {
   const token = jwt.sign(
     { id: user.id, name: user.name, role: "student" },
     SECRET,
-    { expiresIn: "2m" }
+    { expiresIn: "1h" }
   );
 
   console.log("  -> JWT created for", user.name);

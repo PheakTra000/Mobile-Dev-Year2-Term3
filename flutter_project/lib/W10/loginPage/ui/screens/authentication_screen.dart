@@ -7,7 +7,7 @@ class LoginScreen extends StatefulWidget {
 
 
 // https://stackoverflow.com/questions/78132978/trying-to-create-a-callback-function-from-one-widget-to-another-in-flutter-it-w
-final Future<void> Function({required String email, required String password}) onLogin;
+  final Future<void> Function({required String email, required String password}) onLogin;
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 
@@ -45,9 +45,6 @@ class _LoginScreenState extends State<LoginScreen> {
     if (password.length < 6) {
       return '6 character minimum';
     }
-    
-
-
     return null;
   }
 

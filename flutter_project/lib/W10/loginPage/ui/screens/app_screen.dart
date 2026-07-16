@@ -20,25 +20,44 @@ class _AppScreenState extends State<AppScreen> {
     required String password,
   }) async {
     await AuthServices.instance.login(email: email, password: password);
+    
+    if (AuthServices.instance.isLoggedIn()) {
+      setState(() {
+        authStatus = AuthStatus.authenticated;
+      });
+    }
+  }
+
+  Future<void> logout() async {
+    await AuthServices.instance.logout();
     setState(() {
-      authStatus = AuthStatus.authenticated;
+      // AuthServices.instance.session = null;
+      authStatus = AuthStatus.unauthenticated;
+      AuthServices.instance.destroySession();
     });
   }
 
-  void logout() {
-    AuthServices.instance.logout();
+  Future<void> checkSession () async {
+    await AuthServices.instance.restoreSesssion();
     setState(() {
-      authStatus = AuthStatus.unauthenticated;
+      if (AuthServices.instance.isLoggedIn()) {
+        authStatus = AuthStatus.authenticated;
+      } else {
+        authStatus = AuthStatus.unauthenticated;
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // return LoginScreen();
+    // restoreSession();
+
+    checkSession();
+
     if (authStatus == AuthStatus.unauthenticated) {
       return LoginScreen(onLogin: onLogin);
-    } 
-    return ScoreScreen();
-    
+    }
+
+    return ScoreScreen(logout: logout);
   }
 }
